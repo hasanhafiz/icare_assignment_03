@@ -19,7 +19,7 @@ class Validate {
         }              
         
         // check user already exists 
-        if ( !empty( $source['email'] ) ) {            
+        if ( !empty( $source['email'] ) && !empty( $source['username'] )) {            
             $user = new User();
             $user_email = $source['email'];
             if ( $user->exists( $user_email ) ) {
