@@ -1,7 +1,18 @@
 <?php 
     require_once 'core/init.php';                 
     if ( Input::exists() ) {
-        $validate = new Validate();                   
+        $validate = new Validate();  
+        $validate->check( $_POST, [
+            'username',
+            'email',
+            'password',
+            'confirm_password'
+        ] );   
+        
+        // echo '<pre>';        
+        // var_dump( $validate );
+        // echo '</pre>';
+        
         if ( $validate->passed() ) {
             $user = new User();             
             $user->create([
@@ -10,8 +21,7 @@
                 'email' => Input::get( 'email' ),                                
                 'password' => Hash::make( Input::get('password') ),                               
             ]);
-            
-            
+                        
             // $user_data = $user->get( Input::get('email') );
             // var_dump( $user );
             Session::flash('success', 'You registered successfully!');
