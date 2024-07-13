@@ -8,7 +8,8 @@
     // exit;  
     if ( Input::exists() ) {        
 
-        $validate = new Validate();        
+        $validate = new Validate(); 
+        $validate->check( $_POST, ['email','password'] );       
         if ( $validate->passed() ) {               
             $user = new User;
             $login = $user->login( Input::get('email'), Input::get('password') );
