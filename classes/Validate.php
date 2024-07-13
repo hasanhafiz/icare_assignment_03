@@ -29,7 +29,7 @@ class Validate {
         
         // check password mismatch
         if ( !empty( $source['password'] ) && !empty( $source['confirm_password'] ) ) {                                
-            if ( $source['password'] == $source['confirm_password']) {
+            if ( $source['password'] !== $source['confirm_password']) {
                 $this->addError("Password does not match!");
             }                 
         }
